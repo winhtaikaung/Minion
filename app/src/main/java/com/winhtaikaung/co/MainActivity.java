@@ -37,9 +37,9 @@ public class MainActivity extends ActionBarActivity {
 
     Bitmap drawpicture(){
         Paint paint = new Paint();
-        paint.setColor(Color.parseColor("#FFE342"));
+        paint.setColor(Color.parseColor("#F2E16C"));
         Paint paint_jacket=new Paint();
-        paint_jacket.setColor(Color.parseColor("#1471CB"));
+        paint_jacket.setColor(Color.parseColor("#0952D7"));
 
 
 
@@ -62,7 +62,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         Paint paint_eyerim=new Paint();
-        paint_eyerim.setColor(Color.parseColor("#FFE342"));
+        paint_eyerim.setColor(Color.parseColor("#F2E16C"));
 
         Paint paint_eyeinside=new Paint();
         paint_eyeinside.setColor(Color.parseColor("#FFFFFF"));
@@ -71,6 +71,7 @@ public class MainActivity extends ActionBarActivity {
         paint_red.setColor(Color.parseColor("#FFE342"));
 
         Paint paint_black=new Paint();
+        paint_black.setColor(Color.parseColor("#000000"));
 
 
         Bitmap bg = Bitmap.createBitmap(480, 800, Bitmap.Config.ARGB_8888);
@@ -85,7 +86,7 @@ public class MainActivity extends ActionBarActivity {
         canvas_eye.drawCircle(230, 200, 50, paint_eyebg);
         canvas_eye.drawBitmap(bg_eyeinside, -40, -40, null);
         canvas_eye.drawCircle(230, 200, 35, paint_eyeinside);
-        canvas_eye.drawCircle(230, 200, 25, paint_eyeinside);
+        canvas_eye.drawCircle(220, 200, 20, paint_black);
 
 
 
