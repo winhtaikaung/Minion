@@ -100,7 +100,7 @@ public class MainActivity extends ActionBarActivity {
         float x1,y1,x3,y3;
         x1=200;
         y1=300;
-        x3=200;
+        x3=250;
         y3=300;
 
 
@@ -113,11 +113,11 @@ public class MainActivity extends ActionBarActivity {
             }
         };
         final Path path = new Path();
-        path.moveTo(x1, y1);
+        path.moveTo(x1, 290);
 
         final float x2 = (x3 + x1) / 2;
         final float y2 = (y3 + y1) / 2;
-        path.quadTo(x2, y2, x3, y3);
+        path.cubicTo(x1,y1,x2, y2, x3, y3);
         Bitmap bg = Bitmap.createBitmap(480, 800, Bitmap.Config.ARGB_8888);
         Canvas canvas_smile=new Canvas(bg);
         canvas_smile.drawPath(path,paint);
