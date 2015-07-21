@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.ActionBarActivity;
@@ -24,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
         drawpicture();
 
         LinearLayout ll = (LinearLayout) findViewById(R.id.rect);
-        ll.setBackgroundDrawable(new BitmapDrawable(bitmapoverlay(drawpicture(),drawEye())));
+        ll.setBackgroundDrawable(new BitmapDrawable(bitmapoverlay(drawpicture(),drawEye(),getSmile())));
 
     }
 
@@ -39,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
         Paint paint = new Paint();
         paint.setColor(Color.parseColor("#F2E16C"));
         Paint paint_jacket=new Paint();
-        paint_jacket.setColor(Color.parseColor("#0952D7"));
+        paint_jacket.setColor(Color.parseColor("#2D71A1"));
 
 
 
@@ -87,20 +88,53 @@ public class MainActivity extends ActionBarActivity {
         canvas_eye.drawBitmap(bg_eyeinside, -40, -40, null);
         canvas_eye.drawCircle(230, 200, 35, paint_eyeinside);
         canvas_eye.drawCircle(220, 200, 20, paint_black);
+        canvas_eye.drawCircle(220, 200, 2, paint_eyebg);
 
 
 
         return bg;
     }
 
+    Bitmap getSmile(){
 
-    Bitmap bitmapoverlay(Bitmap bmp1,Bitmap bmp2){
+        float x1,y1,x3,y3;
+        x1=200;
+        y1=300;
+        x3=200;
+        y3=300;
+
+
+        Paint paint = new Paint() {
+            {
+                setStyle(Paint.Style.STROKE);
+                setStrokeCap(Paint.Cap.ROUND);
+                setStrokeWidth(3.0f);
+                setAntiAlias(true);
+            }
+        };
+        final Path path = new Path();
+        path.moveTo(x1, y1);
+
+        final float x2 = (x3 + x1) / 2;
+        final float y2 = (y3 + y1) / 2;
+        path.quadTo(x2, y2, x3, y3);
+        Bitmap bg = Bitmap.createBitmap(480, 800, Bitmap.Config.ARGB_8888);
+        Canvas canvas_smile=new Canvas(bg);
+        canvas_smile.drawPath(path,paint);
+        return bg;
+    }
+
+
+    Bitmap bitmapoverlay(Bitmap bmp1,Bitmap bmp2,Bitmap smilestroke){
         Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp2.getConfig());
         Canvas canvas = new Canvas(bmOverlay);
         canvas.drawBitmap(bmp1,new Matrix(), null);
         canvas.drawBitmap(bmp2, 0,0, null);
+        canvas.drawBitmap(smilestroke, 0,0, null);
         return bmOverlay;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
